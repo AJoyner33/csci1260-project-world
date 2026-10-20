@@ -1,0 +1,71 @@
+# Build and Run
+#
+# GitHub runs this file every time you push. It downloads your repository
+# onto a fresh Linux machine, builds your project, and runs it.
+#
+# A green check means your program built and ran to the end cleanly.
+# A red X means it did not compile, crashed, printed nothing, or waited
+# for keyboard input. Click the X to read why.
+
+name: Build and Run
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Build and run
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Download this repository onto the runner
+        uses: actions/checkout@v7
+
+      - name: Install the .NET SDK
+        uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Find the project file
+        id: project
+        run: |
+          PROJECT=$(find . -name '*.csproj' -not -path '*/bin/*' -not -path '*/obj/*' | sort | head -n 1)
+          if [ -z "$PROJECT" ]; then
+            echo "::error::No .csproj file was found. Make sure the project file is committed and pushed."
+            exit 1
+          fi
+          echo "Using $PROJECT"
+          echo "path=$PROJECT" >> "$GITHUB_OUTPUT"
+
+      - name: Build
+        run: dotnet build "${{ steps.project.outputs.path }}" --configuration Release --nologo
+
+      - name: Run
+        env:
+          DOTNET_ROLL_FORWARD: Major
+        run: |
+          set +e
+          timeout 60 dotnet run --project "${{ steps.project.outputs.path }}" --configuration Release --no-build < /dev/null > output.txt 2> errors.txt
+          EXIT_CODE=$?
+          set -e
+          echo "----- What your program printed -----"
+          cat output.txt
+          echo "-------------------------------------"
+          if [ "$EXIT_CODE" -eq 124 ]; then
+            echo "::error::Your program did not finish within 60 seconds. It may be waiting for keyboard input. Remove any Console.ReadLine or Console.ReadKey calls."
+            exit 1
+          fi
+          if [ "$EXIT_CODE" -ne 0 ]; then
+            echo "::error::Your program stopped with exit code $EXIT_CODE, which usually means an unhandled exception. The message below says why."
+            cat errors.txt
+            exit 1
+          fi
+          if [ ! -s output.txt ]; then
+            echo "::error::Your program ran but printed nothing."
+            exit 1
+          fi
+          echo "Your program built and ran to the end cleanly."
