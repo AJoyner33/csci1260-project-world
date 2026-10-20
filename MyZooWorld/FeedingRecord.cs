@@ -4,6 +4,7 @@ using System.Text;
 
 namespace MyZooWorld
 {
+    // One completed feeding. Only Animal.Feed ever builds one.
     public class FeedingRecord
     {
         private int seq;

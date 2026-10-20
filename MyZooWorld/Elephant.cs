@@ -6,6 +6,7 @@ namespace MyZooWorld
 {
     internal class Elephant : Mammal, ITrainable
     {
+        // A concrete mammal that eats hay and can be trained.
         private double tuskLengthCm;
         public const decimal HayCostPerKg = 0.80m;
 

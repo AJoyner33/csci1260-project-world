@@ -4,6 +4,8 @@ using System.Text;
 
 namespace MyZooWorld
 {
+    // Abstract root of the family tree. Holds what every animal has and
+    // demands what every animal must answer. Owns its FeedingRecords (composition).
     public abstract class Animal
     {
         private string id;

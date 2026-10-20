@@ -4,6 +4,7 @@ using System.Text;
 
 namespace MyZooWorld
 {
+    // A concrete mammal that eats meat. Does not sign ITrainable.
     public class Lion : Mammal
     {
         private int prideSize;

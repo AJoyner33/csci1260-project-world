@@ -6,6 +6,7 @@ namespace MyZooWorld
 {
     public class Parrot : Animal, ITrainable
     {
+        // A concrete animal hanging directly off the root, skipping Mammal.
         private double wingSpanCm;
 
         public const decimal SeedCostPerKg = 6.00m;

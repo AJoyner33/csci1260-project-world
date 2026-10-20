@@ -4,6 +4,8 @@ using System.Text;
 
 namespace MyZooWorld
 {
+    // Abstract middle of the family tree. Adds what only mammals have: a lifespan.
+    // Still cannot answer Category() or DailyFoodCost(), so it stays abstract.
     public abstract class Mammal : Animal
     {
         private int gestationDays;
