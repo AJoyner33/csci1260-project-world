@@ -69,16 +69,16 @@ public class Program
         Zoo zoo = new Zoo("Riverbend Zoo");
         Console.WriteLine(zoo.Name + ": " + zoo.Count + " animals");
 
-        Lion nala = new Lion("LN01", "Nala", 6.0, 15, 8);
-        Elephant tembo = new Elephant("EL01", "Tembo", 150.0, 60, 180.0);
+        Lion nala = new Lion("LN01", "Nala", 6.0, 110, 8);
+        Elephant tyla = new Elephant("EL01", "Tyla", 150.0, 650, 180.0);
         Parrot kiwi = new Parrot("PR01", "Kiwi", 0.2, 90.0);
         Parrot rio = new Parrot("PR02", "Rio", 0.3, 85.0);
         zoo.Add(nala);
-        zoo.Add(tembo);
+        zoo.Add(tyla);
         zoo.Add(kiwi);
         zoo.Add(rio);
 
-        if (!zoo.Add(new Lion("LN01", "Simba", 6.5, 14, 8)))
+        if (!zoo.Add(new Lion("LN01", "Simba", 6.5, 0, 8)))
             Console.WriteLine("  REJECTED: duplicate id LN01");
         Console.WriteLine("Animals in zoo: " + zoo.Count);
 
@@ -93,7 +93,7 @@ public class Program
         // ---------- 2 ----------
         Console.WriteLine("=== 2. Inheritance and Abstraction ===");
         Console.WriteLine(nala);
-        Console.WriteLine(tembo);
+        Console.WriteLine(tyla);
         Console.WriteLine(kiwi);
         Console.WriteLine(String.Format("Nala monthly food cost: ${0:N2}", nala.MonthlyFoodCost()));
         Console.WriteLine();
@@ -102,7 +102,7 @@ public class Program
         Console.WriteLine("=== 3. Polymorphism and Interfaces ===");
         List<Animal> all = new List<Animal>();
         all.Add(nala);
-        all.Add(tembo);
+        all.Add(tyla);
         all.Add(kiwi);
         all.Add(rio);
         foreach (Animal a in all)
@@ -111,7 +111,7 @@ public class Program
                 a.Name, a.Category(), a.MonthlyFoodCost()));
         }
         Console.WriteLine(String.Format("Total monthly food cost: ${0:N2}", zoo.TotalMonthlyFoodCost()));
-        ShowTrick(tembo);
+        ShowTrick(tyla);
         ShowTrick(kiwi);
         Console.WriteLine("Trainable animals: " + zoo.TrainableCount());
         Console.WriteLine();

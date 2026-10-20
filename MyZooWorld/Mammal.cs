@@ -6,20 +6,20 @@ namespace MyZooWorld
 {
     public abstract class Mammal : Animal
     {
-        private int lifespanYears;
-        public int LifespanYears { get { return lifespanYears; } }
+        private int gestationDays;
+        public int GestationDays { get { return gestationDays; } }
 
-        protected Mammal(string id, string name, double dailyFeedKg, int lifespanYears) : base(id, name, dailyFeedKg)
+        protected Mammal(string id, string name, double dailyFeedKg, int gestationDays) : base(id, name, dailyFeedKg)
         {
-            if (lifespanYears < 0)
-                throw new ArgumentException("Lifespan cannot be negative.");
+            if (gestationDays < 0)
+                throw new ArgumentException("Gestation days cannot be negative.");
 
-            this.lifespanYears = lifespanYears;
+            this.gestationDays = gestationDays;
         }
 
         public override string Describe()
         {
-            return base.Describe() + String.Format(", {0} yr lifespan", LifespanYears);
+            return base.Describe() + String.Format(", {0} day gestation", GestationDays);
         }
     
     }

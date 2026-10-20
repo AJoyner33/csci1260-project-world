@@ -12,7 +12,7 @@ namespace MyZooWorld
         public double TuskLengthCm { get { return tuskLengthCm; } }
         public string TrickName { get { return "Balance on two feet"; } }
 
-        public Elephant(string id, string name, double dailyFeedKg, int lifespanYears, double tuskLengthCm) : base(id, name, dailyFeedKg, lifespanYears)
+        public Elephant(string id, string name, double dailyFeedKg, int gestationDays, double tuskLengthCm) : base(id, name, dailyFeedKg, gestationDays)
         {
             if (tuskLengthCm < 0)
                 throw new ArgumentException("Tusk length cannot be negative.");

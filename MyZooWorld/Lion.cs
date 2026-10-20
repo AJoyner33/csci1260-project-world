@@ -10,7 +10,7 @@ namespace MyZooWorld
         public const decimal MeatCostPerKg = 9.00m;
         public int PrideSize { get { return prideSize; } }
 
-        public Lion(string id, string name, double dailyFeedKg, int lifespanYears, int prideSize) : base(id, name, dailyFeedKg, lifespanYears)
+        public Lion(string id, string name, double dailyFeedKg, int gestationDays, int prideSize) : base(id, name, dailyFeedKg, gestationDays)
         {
             if (prideSize < 0)
                 throw new ArgumentException("Pride size cannot be negative.");

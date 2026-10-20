@@ -1,5 +1,5 @@
-﻿Lion,LN01,Nala,6.0,15,8
-Elephant,EL01,Tembo,150.0,60,180.0
+﻿Lion,LN01,Nala,6.0,110,8
+Elephant,EL01,Tyla,150.0,650,180.0
 Parrot,PR01,Kiwi,0.2,90.0
-Elephant,EL02,Ndovu,abc,55,150.0
-Lion,LN02,Simba,6.5,14,8
+Elephant,EL02,Ndovu,abc,0,150.0
+Lion,LN02,Simba,6.5,0,8
